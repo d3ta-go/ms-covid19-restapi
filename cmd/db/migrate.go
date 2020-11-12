@@ -3,7 +3,7 @@ package db
 import (
 	"fmt"
 
-	"github.com/d3ta-go/project-template/interface/cmd-apps/database"
+	"github.com/d3ta-go/ms-covid19-restapi/interface/cmd-apps/database"
 	"github.com/spf13/cobra"
 )
 

@@ -3,7 +3,7 @@ package server
 import (
 	"fmt"
 
-	"github.com/d3ta-go/project-template/interface/http-apps/restapi/echo"
+	"github.com/d3ta-go/ms-covid19-restapi/interface/http-apps/restapi/echo"
 	"github.com/spf13/cobra"
 )
 

@@ -1,2 +1,3 @@
-# project-template
-DDD Project Template in Go
+# ms-covid19-restapi
+
+MicroService Interface/Presentation App: Covid19 RestAPI
