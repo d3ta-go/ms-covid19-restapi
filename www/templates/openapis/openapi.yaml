@@ -1,0 +1,161 @@
+openapi: "3.0.3"
+
+info:
+  title: '{{index . "info.Title"}}'
+  description: '{{index . "info.Description"}}'
+  contact:
+    name: '{{index . "info.Contact.Name"}}'
+    url: '{{index . "info.Contact.URL"}}'
+    email: '{{index . "info.Contact.Email"}}'
+  license:
+    name: '{{index . "info.License.Name"}}'
+    url: '{{index . "info.License.URL"}}'
+  version: '{{index . "info.Version"}}'
+
+servers:
+  - url: "{scheme}://{host}"
+    description: Server
+    variables:
+      scheme:
+        description: The API is accessible via https and http
+        enum:
+          - https
+          - http
+        default: http
+      host:
+        default: '{{index . "server.URL.Host.Default"}}'
+
+tags:
+  - name: Systems
+    description: >-
+      [Generic (sub)Domain] Systems
+  - name: Covid19
+    description: >-
+      [Core (sub)Domain] Covid19 (using DDD layered architecture, adapter-connector, Redis)
+
+security:
+  - bearerAuth: []
+
+paths:
+  # System
+  /system/health:
+    get:
+      tags:
+        - Systems
+      security: []
+      operationId: Systems.CheckHealth
+      summary: System Health Check
+      responses:
+        default:
+          $ref: "#/components/responses/GeneralResponse"
+
+  # Covid19
+  /api/v1/covid19/current/by-country:
+    post:
+      tags:
+        - Covid19
+      operationId: covid19.Current.ByCountry
+      summary: Display Current Data By Country
+      requestBody:
+        $ref: "#/components/requestBodies/covid19.Current.ByCountry.Request"
+      responses:
+        default:
+          $ref: "#/components/responses/GeneralResponse"
+
+components:
+  #SecuritySchemes
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  # Parameters
+  parameters:
+
+  # Request Bodies
+  requestBodies:
+    # Covid19
+    covid19.Current.ByCountry.Request:
+      description: Display Covid19 Current Data By Country Requst
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/covid19.Current.ByCountry.Request"
+          examples:
+            WHO.Provider:
+              value:
+                countryCode: ID
+                providers:
+                  - code: WHO
+            Covid19GoId.Provider:
+              value:
+                countryCode: ID
+                providers:
+                  - code: COVID19GOID
+            WHOAndCovid19GoId.Provider:
+              value:
+                countryCode: ID
+                providers:
+                  - code: WHO
+                  - code: COVID19GOID
+            ALL.Default:
+              value:
+                countryCode: ID
+                providers:
+                  - code: _DEFAULT_
+            ALL.Provider:
+              value:
+                countryCode: ID
+                providers:
+                  - code: _ALL_
+
+  responses:
+    GeneralResponse:
+      description: General Response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/GeneralResponse"
+
+  # Schemas
+  schemas:
+    GeneralResponse:
+      required:
+        - status
+        - response
+        - serverInfo
+      properties:
+        status:
+          type: string
+          enum:
+            - OK
+            - ERROR
+          example: OK
+        response:
+          type: object
+        serverInfo:
+          type: object
+
+    # Covid19
+    covid19.Current.ByCountry.Request:
+      type: object
+      properties:
+        countryCode:
+          $ref: "#/components/schemas/geoLocation.field.country.code"
+        providers:
+          $ref: "#/components/schemas/covid19.arr.provider"
+
+    covid19.arr.provider:
+      type: array
+      items:
+        $ref: "#/components/schemas/covid19.obj.provider"
+    covid19.obj.provider:
+      type: object
+      properties:
+        code:
+          $ref: "#/components/schemas/covid19.provider.field.code"
+    covid19.provider.field.code:
+      type: string
+      example: _ALL_
