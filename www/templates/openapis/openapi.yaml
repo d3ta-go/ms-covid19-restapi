@@ -70,9 +70,6 @@ components:
       scheme: bearer
       bearerFormat: JWT
 
-  # Parameters
-  parameters:
-
   # Request Bodies
   requestBodies:
     # Covid19
@@ -137,6 +134,11 @@ components:
           type: object
         serverInfo:
           type: object
+
+    # GeoLocation
+    geoLocation.field.country.code:
+      type: string
+      example: ID
 
     # Covid19
     covid19.Current.ByCountry.Request:
