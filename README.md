@@ -98,3 +98,33 @@ $ cd dist/[OS-arch]/
 $ ./ms-covid19-restapi db migrate
 $ ./ms-covid19-restapi server restapi
 ```
+
+**RESTAPI (console):**
+
+![Microservice: Covid19 REST API](docs/img/covid19-sample-ms-rest-api.png)
+
+**Swagger UI (openapis docs):**
+
+URL: http://localhost:20204/openapis/docs/index.html
+
+![Openapis: Email REST AIP](docs/img/covid19-sample-openapis-docs.png)
+
+**Related Domain/Repositories:**
+
+1. DDD Module: Covid19 (Core Subdomain) - [d3ta-go/ddd-mod-covid19](https://github.com/d3ta-go/ddd-mod-covid19)
+2. Common System Libraries - [d3ta-go/system](https://github.com/d3ta-go/system)
+3. Need JWT Authorization/Token from: Account (Generic Subdomain) Module/Account REST API - [d3ta-go/ms-account-restapi](https://github.com/d3ta-go/ms-account-restapi). `Please use shared redis server to store/retrieve JWT Token.`
+
+**Online Demo:\***
+
+> Work in progress!
+
+**References:**
+
+1. [Book] Domain-Driven Design: Tackling Complexity in the Heart of Software 1st Edition (Eric Evans, 2004)
+
+2. [Book] Patterns, Principles, and Practices of Domain-Driven Design (Scott Millett & Nick Tune, 2015)
+
+**Team & Maintainer:**
+
+1. Muhammad Hari (https://www.linkedin.com/in/muharihar/)
