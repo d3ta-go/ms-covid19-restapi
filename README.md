@@ -1,4 +1,4 @@
-# ms-covid19-restapi
+# ms-covid19-restapi ( [![Go Report Card](https://goreportcard.com/badge/github.com/d3ta-go/ms-covid19-restapi)](https://goreportcard.com/report/github.com/d3ta-go/ms-covid19-restapi) )
 
 MicroService Interface/Presentation App: Covid19 RestAPI
 
