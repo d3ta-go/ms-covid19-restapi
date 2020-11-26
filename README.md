@@ -83,17 +83,18 @@ $ ./ms-covid19-restapi server restapi
 
 5. Distribution (binary)
 
-Binary distribution (OS-arch):
+Binary distribution (OS/arch):
 
-- darwin-amd64
-- linux-amd64
-- linux-386
-- windows-amd64
-- windows-386
+- darwin/amd64
+- linux/amd64
+- linux/386
+- windows/amd64
+- windows/386
 
 ```shell
 $ cd ms-covid19-restapi
 $ sh build.dist.sh
+$ platform: [choose from OS/arch list, for example: darwin/amd64]
 $ cd dist/[OS-arch]/
 $ ./ms-covid19-restapi db migrate
 $ ./ms-covid19-restapi server restapi
